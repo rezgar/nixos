@@ -1,4 +1,4 @@
-{ libs, pkgs, ... }: 
+{ libs, pkgs, config, ... }: 
 
 {
   imports = [
@@ -17,9 +17,12 @@
     font-awesome_4 font-awesome_5
   ];
 
+  # Terminal
+  services.urxvtd.enable = true;
+
   # Enable sound
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system
   services.xserver.enable = true;
