@@ -8,25 +8,27 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
+#  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "ehci_pci" "ahci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/nvme0n1p5";
+    { device = "/dev/sda1";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/nvme0n1p3";
+    { device = "/dev/sdb1";
       fsType = "vfat";
     };
 
-  swapDevices = [ {
-    device = "/dev/nvme0n1p6";
-  }];
+#  swapDevices = [ {
+#    device = "/dev/nvme0n1p6";
+ # }];
 
-  nix.maxJobs = lib.mkDefault 8;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  nix.maxJobs = lib.mkDefault 1;
+  virtualisation.virtualbox.guest.enable = true;
+#  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

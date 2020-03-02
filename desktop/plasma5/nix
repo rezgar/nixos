@@ -1,0 +1,11 @@
+{ lib, pkgs, ... }:
+{
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+       default = "plasma5";
+       xterm.enable = false;
+       plasma5.enable = true;
+    };
+  };
+}

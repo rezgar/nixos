@@ -1,10 +1,17 @@
 { config, pkgs, ... }:
 
 {
+  # TODO: Import packages directly from GitHub using fetchTarball or fetchGit via nixpgks=....
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./default.nix
+      ./desktop.nix
+      ./desktop/plasma5/nix
+      ./chat.nix
+      ./email.nix
+      ./work/crossover.nix
+#     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos") 
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -55,7 +62,7 @@
 
   # Security key management
   services.gnome3.gnome-keyring.enable = true;
-  services.gnome3.seahorse.enable = true;
+  programs.seahorse.enable = true;
   security.pam.services.sddm.startSession = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -71,5 +78,5 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.03"; # Did you read the comment?
+  system.stateVersion = "19.09"; # Did you read the comment?
 }

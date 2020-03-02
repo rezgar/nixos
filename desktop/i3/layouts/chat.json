@@ -1,0 +1,46 @@
+{
+    "layout": "stacked",
+    "percent": 0.7,
+    "type": "con",
+    "nodes": [
+        {
+            "name": "work",
+            "type": "con",
+            "swallows": [
+                { "instance": "mattermost" },
+                { "instance": "slack" }
+            ]
+        }
+    ]
+}
+{
+    "layout": "splitv",
+    "percent": 0.3,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "skype",
+            "name": "skype",
+            "percent": 0.5,
+            "type": "con",
+            "swallows": [
+                {
+                    "instance": "skype"
+                }
+            ]
+        },
+        {
+            "name": "telegram",
+            "percent": 0.5,
+            "type": "con",
+            "swallows": [
+                {
+                    "instance": "Pidgin"
+                },
+		{
+		    "instance": "telegram-desktop"
+		}
+            ]
+        }
+    ]
+}

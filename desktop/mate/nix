@@ -1,0 +1,12 @@
+{ lib, pkgs, ... }:
+{
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+       default = "mate";
+       xterm.enable = false;
+       mate.enable = true;
+    };
+  };
+}
+

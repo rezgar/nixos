@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    skype pidgin 
+    slack skype pidgin tdesktop
   ];
 }
