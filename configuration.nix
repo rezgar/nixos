@@ -7,10 +7,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./desktop.nix
-      ./desktop/plasma5/nix
       ./chat.nix
       ./email.nix
-      ./work/crossover.nix
+	  ./user.nix
 #     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos") 
     ];
 
@@ -64,15 +63,6 @@
   services.gnome3.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
   security.pam.services.sddm.startSession = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rezgar = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel" # enable 'sudo'
-      "networkmanager"
-    ];
-  };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
