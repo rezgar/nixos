@@ -17,4 +17,10 @@ in {
 	          "networkmanager"
 	    	];
 	};
+
+	# Uncomment if auto-login is desired
+#       services.xserver.displayManager.sddm.autoLogin = {
+#               enable = true;
+#               user = "${username}";
+#        };
 }

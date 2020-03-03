@@ -32,8 +32,8 @@
   services.xserver.libinput.naturalScrolling = true;
 
   # Display Manager
-  services.xserver.displayManager.sddm.enable = false;
-  services.xserver.displayManager.slim.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
 
   # Enable CUPS to print document
   #services.printing.enable = true;

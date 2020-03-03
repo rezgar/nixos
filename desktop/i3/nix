@@ -6,7 +6,6 @@
    
   environment.variables.EDITOR = "urxvtc";
 
-  services.urxvtd.enable = true;
   services.xserver.desktopManager.default = "none";
   services.xserver.desktopManager.xterm.enable = false;
 

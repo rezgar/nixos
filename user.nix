@@ -18,4 +18,9 @@ in {
 	          "networkmanager"
 	    	];
 	};
+
+#	services.xserver.displayManager.sddm.autoLogin = {
+#		enable = true;
+#		user = "${username}";
+#        };
 }
