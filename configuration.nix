@@ -5,12 +5,13 @@
 
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./desktop.nix
-      ./chat.nix
-      ./email.nix
-	  ./user.nix
-#     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos") 
+	./hardware-configuration.nix
+	./desktop.nix
+	./chat.nix
+	./email.nix
+	./coding.nix
+	./user.nix
+#	(import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos") 
     ];
 
   nixpkgs.config.allowUnfree = true;

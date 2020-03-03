@@ -2,12 +2,11 @@
 
 # Use your own OS user name
 let
-	username = "rezgar";
+	username = "user";
 in {
 	# Add/modify existing default or custom imports 
 	imports = [
 		./desktop/plasma5/nix
-		./work/crossover.nix
 	];
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.

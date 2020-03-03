@@ -17,9 +17,6 @@
     font-awesome_4 font-awesome_5
   ];
 
-  # Terminal
-  services.urxvtd.enable = true;
-
   # Enable sound
   sound.enable = true;
   # hardware.pulseaudio.enable = true;
@@ -35,7 +32,8 @@
   services.xserver.libinput.naturalScrolling = true;
 
   # Display Manager
-  #services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.enable = false;
+  services.xserver.displayManager.slim.enable = true;
 
   # Enable CUPS to print document
   #services.printing.enable = true;
