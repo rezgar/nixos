@@ -2,7 +2,9 @@
 
 {
   imports = [
-#    ./desktop/i3.nix # Defining at user level
+	./chat.nix
+	./email.nix
+	./coding.nix
   ];
 
   environment.systemPackages = with pkgs; [
