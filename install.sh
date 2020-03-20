@@ -58,7 +58,7 @@ else
 fi;
 
 read -p "Root partition ($ROOT_PARTITION) will be formatted. Please type yes to confirm." reply
-if [ "$reply" -ne "yes" ]; then
+if [ "$reply" != "yes" ]; then
     echo "Installation aborted"
     exit 1;
 fi;
@@ -79,7 +79,7 @@ done
 mkdir -p /mnt/boot
 mount $BOOT_PARTITION /mnt/boot
 
-if [ "$SWAP_PARTITION" -ne "" ]; then 
+if [ "$SWAP_PARTITION" != "" ]; then 
     umount $SWAP_PARTITION; mkswap -L swap $SWAP_PARTITION
     swapon $SWAP_PARTITION
 fi;
