@@ -38,29 +38,29 @@ echo "Getting ready to install NixOS."
 
 echo "Please provide partition mapping:"
 echo "Root partition /"
-if [ $ROOT_PARTITION!="" ]; then
-    echo "$ROOT_PARTITION (pre-configured)"
-else
+if [ -z "$ROOT_PARTITION" ]; then
     read $ROOT_PARTITION
+else
+    echo "$ROOT_PARTITION (pre-configured)"
 fi;
 
 echo "Boot partition /boot"
-if [ $BOOT_PARTITION!="" ]; then
-    echo "$BOOT_PARTITION (pre-configured)"
-else
+if [ -z "$BOOT_PARTITION" ]; then
     read $BOOT_PARTITION
+else
+    echo "$BOOT_PARTITION (pre-configured)"
 fi;
 
 echo "Swap partition (optional) /swap"
-if [ $SWAP_PARTITION!="" ]; then
-    echo "$SWAP_PARTITION (pre-configured)"
-else
+if [ -z "$SWAP_PARTITION" ]; then
     read $SWAP_PARTITION
+else
+    echo "$SWAP_PARTITION (pre-configured)"
 fi;
 
 echo "Root partition ($ROOT_PARTITION) will be formatted. Please type yes to confirm."
 read $INPUT
-if [ $INPUT!="yes" ]; then
+if [ "$INPUT"!="yes" ]; then
     echo "Installation aborted"
     exit 1;
 fi;
@@ -82,7 +82,7 @@ done
 mkdir -p /mnt/boot
 mount $BOOT_PARTITION /mnt/boot
 
-if [ $SWAP_PARTITION!="" ]; then 
+if [ "$SWAP_PARTITION"!="" ]; then 
     umount $SWAP_PARTITION && mkswap -L swap $SWAP_PARTITION
     swapon $SWAP_PARTITION
 fi;
