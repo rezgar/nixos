@@ -34,12 +34,12 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-if [ $ROOT_PARTITION == "" ]; then
+if [ $ROOT_PARTITION=="" ]; then
     echo "Expecting parameter: --root /dev/target-root-partition"
     exit 1
 fi;
 
-if [ $BOOT_PARTITION == "" ]; then
+if [ $BOOT_PARTITION=="" ]; then
     echo "Expecting parameter: --boot /dev/target-boot-partition"
     exit 1;
 fi;
