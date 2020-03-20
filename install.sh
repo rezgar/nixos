@@ -58,9 +58,8 @@ else
     echo "$SWAP_PARTITION (pre-configured)"
 fi;
 
-echo "Root partition ($ROOT_PARTITION) will be formatted. Please type yes to confirm."
-read $INPUT
-if [ "$INPUT"!="yes" ]; then
+read -p "Root partition ($ROOT_PARTITION) will be formatted. Please type yes to confirm." reply
+if [ "$reply" -ne "yes" ]; then
     echo "Installation aborted"
     exit 1;
 fi;
@@ -70,9 +69,8 @@ fi;
 umount $ROOT_PARTITION && mkfs.ext4 -L nixos $ROOT_PARTITION
 mount $ROOT_PARTITION /mnt
 
-echo "Do you want to format the boot partition ($BOOT_PARTITION)?"
 while true; do
-    read -p "Do you wish to install this program?" yn
+    read -p "Do you want to format the boot partition ($BOOT_PARTITION)?" yn
     case $yn in
         [Yy]* ) umount $BOOT_PARTITION && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
         [Nn]* ) exit;;
@@ -82,7 +80,7 @@ done
 mkdir -p /mnt/boot
 mount $BOOT_PARTITION /mnt/boot
 
-if [ "$SWAP_PARTITION"!="" ]; then 
+if [ "$SWAP_PARTITION" -ne "" ]; then 
     umount $SWAP_PARTITION && mkswap -L swap $SWAP_PARTITION
     swapon $SWAP_PARTITION
 fi;
