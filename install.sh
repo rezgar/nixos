@@ -65,8 +65,10 @@ fi;
 
 ## Partitioning and formatting
 
-echo "Unmounting the root partition..."
-umount $ROOT_PARTITION || true
+echo "Unmounting the partitions partition..."
+umount $BOOT_PARTITION || umount /mnt/boot || true
+umount $ROOT_PARTITION || umount /mnt || true
+umount $SWAP_PARTITION || true
 
 echo "Formatting the root partition..."
 mkfs.ext4 -L nixos $ROOT_PARTITION
@@ -77,8 +79,8 @@ mount $ROOT_PARTITION /mnt
 while true; do
     read -p "Do you want to format the boot partition ($BOOT_PARTITION)?" yn
     case $yn in
-        [Yy]* ) echo "Unmounting the boot partition..." && umount $BOOT_PARTITION || true; echo "Formatting the boot partition..." && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
-        [Nn]* ) exit;;
+        [Yy]* ) echo "Formatting the boot partition..." && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -89,8 +91,6 @@ mount $BOOT_PARTITION /mnt/boot
 
 if [ "$SWAP_PARTITION" != "" ]; then 
     echo "Formatting the swap partition..."
-    umount $SWAP_PARTITION || true
-    echo "Formatting the swap partition..."
     mkswap -L swap $SWAP_PARTITION
     echo "Enabling swap..."
     swapon $SWAP_PARTITION
@@ -99,7 +99,7 @@ fi;
 ## Setting up NixOS configuration
 
 echo "Generating NixOS config..."
-nixos-generage-config --root /mnt
+nixos-generate-config --root /mnt
 
 # Backing up the generated configuration
 echo "Backing up NixOS config..."
