@@ -65,13 +65,13 @@ fi;
 
 ## Partitioning and formatting
 
-umount $ROOT_PARTITION && mkfs.ext4 -L nixos $ROOT_PARTITION
+umount $ROOT_PARTITION; mkfs.ext4 -L nixos $ROOT_PARTITION
 mount $ROOT_PARTITION /mnt
 
 while true; do
     read -p "Do you want to format the boot partition ($BOOT_PARTITION)?" yn
     case $yn in
-        [Yy]* ) umount $BOOT_PARTITION && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
+        [Yy]* ) umount $BOOT_PARTITION; mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -80,7 +80,7 @@ mkdir -p /mnt/boot
 mount $BOOT_PARTITION /mnt/boot
 
 if [ "$SWAP_PARTITION" -ne "" ]; then 
-    umount $SWAP_PARTITION && mkswap -L swap $SWAP_PARTITION
+    umount $SWAP_PARTITION; mkswap -L swap $SWAP_PARTITION
     swapon $SWAP_PARTITION
 fi;
 
