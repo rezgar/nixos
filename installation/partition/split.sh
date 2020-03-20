@@ -21,5 +21,5 @@ PARTITION=${POSITIONAL[1]}
 umount $DISK$PARTITION || true
 parted -s $DISK rm $PARTITION || true
 parted -s $DISK mktable gpt || true
-parted -s $DISK mkpart fat16 64s 300MiB
+./boot.sh $DISK $(parted $DISK print | grep esp | awk '{print $1}') 1
 parted -s $DISK -- mkpart ext4 300MiB -1
