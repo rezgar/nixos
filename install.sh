@@ -36,24 +36,23 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 echo "Getting ready to install NixOS."
 
-echo "Please provide partition mapping:"
 echo "Root partition /"
 if [ -z "$ROOT_PARTITION" ]; then
-    read $ROOT_PARTITION
+    read ROOT_PARTITION
 else
     echo "$ROOT_PARTITION (pre-configured)"
 fi;
 
 echo "Boot partition /boot"
 if [ -z "$BOOT_PARTITION" ]; then
-    read $BOOT_PARTITION
+    read BOOT_PARTITION
 else
     echo "$BOOT_PARTITION (pre-configured)"
 fi;
 
 echo "Swap partition (optional) /swap"
 if [ -z "$SWAP_PARTITION" ]; then
-    read $SWAP_PARTITION
+    read SWAP_PARTITION
 else
     echo "$SWAP_PARTITION (pre-configured)"
 fi;
