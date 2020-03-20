@@ -18,7 +18,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 DISK=${POSITIONAL[0]}
 PARTITION=${POSITIONAL[1]}
 
-parted -s $DISK rm $PARTITION
-parted -s $DISK mktable gpt
+umount $DISK$PARTITION || true
+parted -s $DISK rm $PARTITION || true
+parted -s $DISK mktable gpt || true
 parted -s $DISK mkpart fat16 64s 300MiB
-parted -s $DISK mkpart ext4 300MiB -1s
+parted -s $DISK -- mkpart ext4 300MiB -1

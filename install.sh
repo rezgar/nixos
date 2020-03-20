@@ -79,7 +79,7 @@ mount $ROOT_PARTITION /mnt
 while true; do
     read -p "Do you want to format the boot partition ($BOOT_PARTITION)?" yn
     case $yn in
-        [Yy]* ) echo "Formatting the boot partition..." && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
+        [Yy]* ) echo "Formatting the boot partition..." && mkfs.fat -F 16 $BOOT_PARTITION; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
