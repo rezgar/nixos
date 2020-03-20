@@ -65,37 +65,56 @@ fi;
 
 ## Partitioning and formatting
 
-umount $ROOT_PARTITION; mkfs.ext4 -L nixos $ROOT_PARTITION
+echo "Unmounting the root partition..."
+umount $ROOT_PARTITION
+
+echo "Formatting the root partition..."
+mkfs.ext4 -L nixos $ROOT_PARTITION
+
+echo "Mounting the root partition..."
 mount $ROOT_PARTITION /mnt
 
 while true; do
     read -p "Do you want to format the boot partition ($BOOT_PARTITION)?" yn
     case $yn in
-        [Yy]* ) umount $BOOT_PARTITION; mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
+        [Yy]* ) echo "Unmounting the boot partition..." && umount $BOOT_PARTITION; echo "Formatting the boot partition..." && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
+
 mkdir -p /mnt/boot
+echo "Mounting the boot partition..."
 mount $BOOT_PARTITION /mnt/boot
 
 if [ "$SWAP_PARTITION" != "" ]; then 
-    umount $SWAP_PARTITION; mkswap -L swap $SWAP_PARTITION
+    echo "Formatting the swap partition..."
+    umount $SWAP_PARTITION
+    echo "Formatting the swap partition..."
+    mkswap -L swap $SWAP_PARTITION
+    echo "Enabling swap..."
     swapon $SWAP_PARTITION
 fi;
 
 ## Setting up NixOS configuration
 
+echo "Generating NixOS config..."
 nixos-generage-config --root /mnt
 
 # Backing up the generated configuration
+echo "Backing up NixOS config..."
 mv /mnt/etc/nixos /mnt/etc/nixos.bak
 
 # Installing Git
+echo "Installing Git..."
 nix-env -iA nixos.pkgs.gitAndTools.gitFull
 
+echo "Pulling NixOS settings..."
 git clone https://github.com/rezgar/nixos-settings.git /mnt/etc/nixos
+
+echo "Preparing hardware and user configs..."
 cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
 cp /mnt/etc/nixos/user.template.nix /mnt/etc/nixos/user.nix
 
+echo "Installing NixOS..."
 nixos-install
