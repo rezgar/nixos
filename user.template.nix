@@ -6,7 +6,7 @@ let
 in {
 	# Add/modify existing default or custom imports 
 	imports = [
-		./desktop-managers/plasma5/nix
+		./desktop-managers/kde/nix
 	];
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.
@@ -15,6 +15,7 @@ in {
 	    	extraGroups = [
 	    	  "wheel" # enable 'sudo'
 	          "networkmanager"
+			  "docker"
 	    	];
 	};
 

@@ -57,6 +57,8 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  virtualisation.docker.enable = true;
+
   # Security key management
   services.gnome3.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
