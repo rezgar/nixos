@@ -66,7 +66,7 @@ fi;
 ## Partitioning and formatting
 
 echo "Unmounting the root partition..."
-umount $ROOT_PARTITION
+umount $ROOT_PARTITION || true
 
 echo "Formatting the root partition..."
 mkfs.ext4 -L nixos $ROOT_PARTITION
@@ -77,7 +77,7 @@ mount $ROOT_PARTITION /mnt
 while true; do
     read -p "Do you want to format the boot partition ($BOOT_PARTITION)?" yn
     case $yn in
-        [Yy]* ) echo "Unmounting the boot partition..." && umount $BOOT_PARTITION; echo "Formatting the boot partition..." && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
+        [Yy]* ) echo "Unmounting the boot partition..." && umount $BOOT_PARTITION || true; echo "Formatting the boot partition..." && mkfs.fat -F 32 -L boot $BOOT_PARTITION; break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -89,7 +89,7 @@ mount $BOOT_PARTITION /mnt/boot
 
 if [ "$SWAP_PARTITION" != "" ]; then 
     echo "Formatting the swap partition..."
-    umount $SWAP_PARTITION
+    umount $SWAP_PARTITION || true
     echo "Formatting the swap partition..."
     mkswap -L swap $SWAP_PARTITION
     echo "Enabling swap..."
