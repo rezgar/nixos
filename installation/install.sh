@@ -34,7 +34,7 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-echo "Getting ready to install NixOS."
+echo "Map partitions to devices:"
 
 if [ -z "$ROOT_PARTITION" ]; then
     read -p "/: " ROOT_PARTITION
@@ -110,7 +110,7 @@ echo "Installing Git..."
 nix-env -iA nixos.pkgs.gitAndTools.gitFull
 
 echo "Pulling NixOS settings..."
-git clone https://github.com/rezgar/nixos-settings.git /mnt/etc/nixos
+git clone https://github.com/rezgar/nixos.git /mnt/etc/nixos
 
 echo "Preparing hardware and user configs..."
 cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
