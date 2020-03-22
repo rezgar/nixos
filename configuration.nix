@@ -1,14 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  # TODO: Import packages directly from GitHub using fetchTarball or fetchGit via nixpgks=....
-
   imports =
     [ # Include the results of the hardware scan.
-	./hardware-configuration.nix
-	./desktop.nix
-	./user.nix
-#	(import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos") 
+      ./hardware-configuration.nix
+      ./desktop.nix
+      ./user.nix
     ];
 
   nixpkgs.config.allowUnfree = true;

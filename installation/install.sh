@@ -114,7 +114,6 @@ git clone https://github.com/rezgar/nixos-settings.git /mnt/etc/nixos
 
 echo "Preparing hardware and user configs..."
 cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
-cp /mnt/etc/nixos/user.template.nix /mnt/etc/nixos/user.nix
 
 echo "Installing NixOS..."
 nixos-install
