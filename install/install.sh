@@ -46,7 +46,8 @@ else
 fi;
 
 echo "Mount points:"
-echo "* Mapping partitions to mount points. Use parted/gparted or scripts within the 'partition' directory to prepare partitions in advance."
+echo "* Mapping partitions to mount points."
+echo "** Use parted/gparted or scripts within the 'partition' directory to prepare partitions in advance."
 
 if [ -z "$BOOT_PARTITION" ]; then
     read -p "/boot: " BOOT_PARTITION
@@ -127,7 +128,7 @@ git clone https://github.com/rezgar/nixos.git /mnt/etc/nixos
 echo "Preparing hardware and user configs..."
 cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
 
-sed -i "s/username = \"user\";/username = \"$USERNAME\";/g" /mnt/etc/nixos.bak/user.nix
+sed -i "s/username = \"user\";/username = \"$USERNAME\";/g" /mnt/etc/nixos/user.nix
 
 echo "Installing NixOS..."
 nixos-install
