@@ -22,6 +22,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    -u|--user)
+    USERNAME="$2"
+    shift # past argument
+    shift # past value
+    ;;
     --default)
     DEFAULT=YES
     shift # past argument
@@ -34,18 +39,25 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-echo "Map partitions to devices:"
-
-if [ -z "$ROOT_PARTITION" ]; then
-    read -p "/: " ROOT_PARTITION
+if [ -z "$USERNAME" ]; then
+    read -p "Username (default: user): " USERNAME
 else
-    echo "/: $ROOT_PARTITION (pre-configured)"
+    echo "Username: $USERNAME (pre-configured)"
 fi;
+
+echo "Mount points:"
+echo "* Mapping partitions to mount points. Use parted/gparted or scripts within the 'partition' directory to prepare partitions in advance."
 
 if [ -z "$BOOT_PARTITION" ]; then
     read -p "/boot: " BOOT_PARTITION
 else
     echo "/boot: $BOOT_PARTITION (pre-configured)"
+fi;
+
+if [ -z "$ROOT_PARTITION" ]; then
+    read -p "/: " ROOT_PARTITION
+else
+    echo "/: $ROOT_PARTITION (pre-configured)"
 fi;
 
 if [ -z "$SWAP_PARTITION" ]; then
@@ -114,6 +126,8 @@ git clone https://github.com/rezgar/nixos.git /mnt/etc/nixos
 
 echo "Preparing hardware and user configs..."
 cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
+
+sed -i "s/username = \"user\";/username = \"$USERNAME\";/g" /mnt/etc/nixos.bak/user.nix
 
 echo "Installing NixOS..."
 nixos-install
