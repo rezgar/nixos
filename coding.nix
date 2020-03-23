@@ -2,6 +2,6 @@
 
 {
 	environment.systemPackages = with pkgs; [
-		vscode awscli nodejs
+		vscode awscli nodejs nodePackages."@angular/cli"
 	];
 }
