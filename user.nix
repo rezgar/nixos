@@ -19,6 +19,10 @@ in {
 	    	];
 	};
 
+	environment.systemPackages = with pkgs; [
+		# Insert your custom packages here (separated with a space)
+	];
+
 	# Uncomment if auto-login is desired
 #       services.xserver.displayManager.sddm.autoLogin = {
 #               enable = true;
