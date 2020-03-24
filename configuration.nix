@@ -45,8 +45,6 @@
   virtualisation.docker.enable = true;
 
   # Security key management
-  services.gnome3.gnome-keyring.enable = true;
-  programs.seahorse.enable = true;
   security.pam.services.sddm.startSession = true;
 
   # This value determines the NixOS release with which your system is to be

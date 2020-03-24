@@ -25,7 +25,7 @@
 
   # Enable the X11 windowing system
   services.xserver.enable = true;
-  #services.xserver.autorun = false;
+  services.xserver.autorun = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eugosign:e";
 
