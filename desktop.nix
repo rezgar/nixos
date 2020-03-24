@@ -2,9 +2,9 @@
 
 {
   imports = [
-	./chat.nix
-	./email.nix
-	./coding.nix
+    ./chat.nix
+    ./email.nix
+    ./coding.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -35,7 +35,6 @@
 
   # Display Manager
   services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
 
   # Enable CUPS to print document
   #services.printing.enable = true;

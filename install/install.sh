@@ -22,6 +22,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    -u|--user)
+    USERNAME="$2"
+    shift # past argument
+    shift # past value
+    ;;
     --default)
     DEFAULT=YES
     shift # past argument
@@ -34,34 +39,42 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-echo "Getting ready to install NixOS."
-
-echo "Root partition /"
-if [ -z "$ROOT_PARTITION" ]; then
-    read ROOT_PARTITION
+if [ -z "$USERNAME" ]; then
+    read -p "Username (default: user): " USERNAME
 else
-    echo "$ROOT_PARTITION (pre-configured)"
+    echo "Username: $USERNAME (pre-configured)"
 fi;
 
-echo "Boot partition /boot"
+echo "Mount points:"
+echo "* Mapping partitions to mount points."
+echo "** Use parted/gparted or scripts within the 'partition' directory to prepare partitions in advance."
+
 if [ -z "$BOOT_PARTITION" ]; then
-    read BOOT_PARTITION
+    read -p "/boot: " BOOT_PARTITION
 else
-    echo "$BOOT_PARTITION (pre-configured)"
+    echo "/boot: $BOOT_PARTITION (pre-configured)"
 fi;
 
-echo "Swap partition (optional) /swap"
+if [ -z "$ROOT_PARTITION" ]; then
+    read -p "/: " ROOT_PARTITION
+else
+    echo "/: $ROOT_PARTITION (pre-configured)"
+fi;
+
 if [ -z "$SWAP_PARTITION" ]; then
-    read SWAP_PARTITION
+    read -p "/swap (optional): " SWAP_PARTITION
 else
-    echo "$SWAP_PARTITION (pre-configured)"
+    echo "/swap: $SWAP_PARTITION (pre-configured)"
 fi;
 
-read -p "Root partition ($ROOT_PARTITION) will be formatted. Please type yes to confirm." reply
-if [ "$reply" != "yes" ]; then
-    echo "Installation aborted"
-    exit 1;
-fi;
+while true; do
+    read -p "Are you sure you want to format $ROOT_PARTITION (/ partition)? " yn
+    case $yn in
+        [Yy]* ) echo "Formatting the boot partition..." && mkfs.fat -F 16 $BOOT_PARTITION; break;;
+        [Nn]* ) echo "Aborting the installation"; exit 1;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 ## Partitioning and formatting
 
@@ -77,7 +90,7 @@ echo "Mounting the root partition..."
 mount $ROOT_PARTITION /mnt
 
 while true; do
-    read -p "Do you want to format the boot partition ($BOOT_PARTITION)?" yn
+    read -p "Do you want to format the boot partition ($BOOT_PARTITION)? " yn
     case $yn in
         [Yy]* ) echo "Formatting the boot partition..." && mkfs.fat -F 16 $BOOT_PARTITION; break;;
         [Nn]* ) break;;
@@ -110,11 +123,12 @@ echo "Installing Git..."
 nix-env -iA nixos.pkgs.gitAndTools.gitFull
 
 echo "Pulling NixOS settings..."
-git clone https://github.com/rezgar/nixos-settings.git /mnt/etc/nixos
+git clone https://github.com/rezgar/nixos.git /mnt/etc/nixos
 
 echo "Preparing hardware and user configs..."
 cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
-cp /mnt/etc/nixos/user.template.nix /mnt/etc/nixos/user.nix
+
+sed -i "s/username = \"user\";/username = \"$USERNAME\";/g" /mnt/etc/nixos/user.nix
 
 echo "Installing NixOS..."
 nixos-install
