@@ -37,5 +37,5 @@
   services.xserver.displayManager.sddm.enable = true;
 
   # Enable CUPS to print document
-  #services.printing.enable = true;
+  services.printing.enable = true;
 }
