@@ -24,8 +24,8 @@
   };
 
   console = {
-     consoleFont = "Lat2-Terminus16";
-     consoleKeyMap = "us";
+     font = "Lat2-Terminus16";
+     keyMap = "us";
   };
 
   # Set your time zone.
