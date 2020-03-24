@@ -37,9 +37,9 @@
                 {
                     "instance": "Pidgin"
                 },
-		{
-		    "instance": "telegram-desktop"
-		}
+        {
+            "instance": "telegram-desktop"
+        }
             ]
         }
     ]

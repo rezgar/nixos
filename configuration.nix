@@ -28,9 +28,6 @@
      keyMap = "us";
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Chisinau";
-
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
     wget vim

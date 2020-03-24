@@ -154,26 +154,26 @@ bindsym $mod+Ctrl+Shift+Left move workspace to output left
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-	# These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-	# Pressing left will shrink the window’s width.  Pressing right will
-	# grow the window’s width.  Pressing up will shrink the window’s
-	# height.  Pressing down will grow the window’s height.
-	bindsym j resize shrink width 10 px or 10 ppt
-	bindsym k resize grow height 10 px or 10 ppt
-	bindsym l resize shrink height 10 px or 10 ppt
-	bindsym semicolon resize grow width 10 px or 10 ppt
+    # Pressing left will shrink the window’s width.  Pressing right will
+    # grow the window’s width.  Pressing up will shrink the window’s
+    # height.  Pressing down will grow the window’s height.
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
 
-	# same bindings, but for the arrow keys
-	bindsym Left resize grow width 10 px or 10 ppt
-	bindsym Down resize grow height 10 px or 10 ppt
-	bindsym Up resize shrink height 10 px or 10 ppt
-	bindsym Right resize shrink width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize grow width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize shrink width 10 px or 10 ppt
 
-	# back to normal: Enter or Escape or $mod+r
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym $mod+r mode "default" 
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default" 
 }
 
 bindsym $mod+r mode "resize"
@@ -205,35 +205,35 @@ set $text-color #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color #E53935
 
-# window colors		border			background		text			# indicator
-client.focused		$bg-color		$bg-color		$text-color		#00ff00
-client.unfocused	$inactive-bg-color	$inactive-bg-color	$inactive-text-color	#00ff00
-client.focused_inactive	$inactive-bg-color	$inactive-bg-color	$inactive-text-color	#00ff00
-client.urgent		$urgent-bg-color	$urgent-bg-color	$text-color		#00ff00
+# window colors        border            background        text            # indicator
+client.focused        $bg-color        $bg-color        $text-color        #00ff00
+client.unfocused    $inactive-bg-color    $inactive-bg-color    $inactive-text-color    #00ff00
+client.focused_inactive    $inactive-bg-color    $inactive-bg-color    $inactive-text-color    #00ff00
+client.urgent        $urgent-bg-color    $urgent-bg-color    $text-color        #00ff00
 
 # hides borders and indicator hide_edge borders both
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar { 
-	status_command i3blocks -c /home/rezgar/.config/i3/i3blocks.conf
-	colors 	{
-		background		$bg-color		separator		#757575
-		#			border			background		text
-		focused_workspace	$bg-color		$bg-color		$text-color
-		inactive_workspace	$inactive-bg-color	$inactive-bg-color	$inactive-text-color
-		urgent_workspace	$urgent-bg-color	$urgent-bg-color	$text-color 
-	} 
+    status_command i3blocks -c /home/rezgar/.config/i3/i3blocks.conf
+    colors     {
+        background        $bg-color        separator        #757575
+        #            border            background        text
+        focused_workspace    $bg-color        $bg-color        $text-color
+        inactive_workspace    $inactive-bg-color    $inactive-bg-color    $inactive-text-color
+        urgent_workspace    $urgent-bg-color    $urgent-bg-color    $text-color 
+    } 
 # Hiding the bar by default, showing on Alt press
-#	mode hide
-#	hidden_state hide
-#	modifier Mod1 
+#    mode hide
+#    hidden_state hide
+#    modifier Mod1 
 }
 
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -i \
-			 -color-window "$bg-color" \
-			 -theme '/etc/nixos/desktop/i3/rofi.theme' \
-			 -font "System San Francisco Display 18"
+             -color-window "$bg-color" \
+             -theme '/etc/nixos/desktop/i3/rofi.theme' \
+             -font "System San Francisco Display 18"
 
 # bindsym $mod+shift+l exec i3lock
 bindsym $mod+Shift+l exec xset dpms force off && i3lock -d --color 000000
