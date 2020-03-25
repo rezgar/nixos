@@ -6,7 +6,7 @@ let
 in {
     # Add/modify existing default or custom imports 
     imports = [
-        ./desktop-managers/kde/nix
+        ./desktop/kde/nix
     ];
 
     # Set your time zone.
