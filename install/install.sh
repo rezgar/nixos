@@ -126,9 +126,9 @@ echo "Pulling NixOS settings..."
 git clone https://github.com/rezgar/nixos.git /mnt/etc/nixos
 
 echo "Preparing hardware and user configs..."
-cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
+git checkout $USERNAME || git branch $USERNAME && git checkout $USERNAME && sed -i "s/username = \"user\";/username = \"$USERNAME\";/g" /mnt/etc/nixos/user.nix
 
-sed -i "s/username = \"user\";/username = \"$USERNAME\";/g" /mnt/etc/nixos/user.nix
+cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
 
 echo "Installing NixOS..."
 nixos-install
