@@ -4,7 +4,7 @@ let
     username = "rezgar";
 in {
     imports = [
-        ./desktop/kde/nix
+        ./desktop/i3/nix
     ];
 
     time.timeZone = "Europe/Chisinau";
