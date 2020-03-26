@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let 
-  Xresources = builtins.readFile ./Xresources
+  Xresources = builtins.readFile ./Xresources;
 in
 {
   environment.systemPackages = with pkgs; [
