@@ -33,6 +33,6 @@ in
   services.urxvtd.enable = true;
   environment.variables.EDITOR = "urxvtc";
   services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeTextFile "Xresources" Xresources }
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" Xresources }
   '';
 }
