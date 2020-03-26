@@ -127,7 +127,9 @@ bindsym $mod+F3 workspace $wsWorkflowy, exec workflowy
 #bindsym $mod+9 workspace $wsVideo, exec Popcorn-Time
 #bindsym $mod+9 workspace $wsVideo, exec popcorntime 
 bindsym $mod+9 workspace $wsUnknown2
+bindsym $mod+F4 workspace $wsUnknown2
 bindsym $mod+0 workspace $wsCustom
+bindsym $mod+F5 workspace $wsCustom
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $wsBrowserPersonal
@@ -154,26 +156,26 @@ bindsym $mod+Ctrl+Shift+Left move workspace to output left
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
+  # These bindings trigger as soon as you enter the resize mode
 
-    # Pressing left will shrink the window’s width.  Pressing right will
-    # grow the window’s width.  Pressing up will shrink the window’s
-    # height.  Pressing down will grow the window’s height.
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
+  # Pressing left will shrink the window’s width.  Pressing right will
+  # grow the window’s width.  Pressing up will shrink the window’s
+  # height.  Pressing down will grow the window’s height.
+  bindsym j resize shrink width 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym l resize shrink height 10 px or 10 ppt
+  bindsym semicolon resize grow width 10 px or 10 ppt
 
-    # same bindings, but for the arrow keys
-    bindsym Left resize grow width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize shrink width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize grow width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize shrink width 10 px or 10 ppt
 
-    # back to normal: Enter or Escape or $mod+r
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+r mode "default" 
+  # back to normal: Enter or Escape or $mod+r
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default" 
 }
 
 bindsym $mod+r mode "resize"
@@ -205,35 +207,35 @@ set $text-color #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color #E53935
 
-# window colors        border            background        text            # indicator
-client.focused        $bg-color        $bg-color        $text-color        #00ff00
-client.unfocused    $inactive-bg-color    $inactive-bg-color    $inactive-text-color    #00ff00
-client.focused_inactive    $inactive-bg-color    $inactive-bg-color    $inactive-text-color    #00ff00
-client.urgent        $urgent-bg-color    $urgent-bg-color    $text-color        #00ff00
+# window colors    border      background    text      # indicator
+client.focused    $bg-color    $bg-color    $text-color    #00ff00
+client.unfocused  $inactive-bg-color  $inactive-bg-color  $inactive-text-color  #00ff00
+client.focused_inactive  $inactive-bg-color  $inactive-bg-color  $inactive-text-color  #00ff00
+client.urgent    $urgent-bg-color  $urgent-bg-color  $text-color    #00ff00
 
 # hides borders and indicator hide_edge borders both
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar { 
-    status_command i3blocks -c /home/rezgar/.config/i3/i3blocks.conf
-    colors     {
-        background        $bg-color        separator        #757575
-        #            border            background        text
-        focused_workspace    $bg-color        $bg-color        $text-color
-        inactive_workspace    $inactive-bg-color    $inactive-bg-color    $inactive-text-color
-        urgent_workspace    $urgent-bg-color    $urgent-bg-color    $text-color 
-    } 
+  status_command i3blocks -c /etc/nixos/desktop/i3/i3blocks.conf
+  colors   {
+    background    $bg-color    separator    #757575
+    #      border      background    text
+    focused_workspace  $bg-color    $bg-color    $text-color
+    inactive_workspace  $inactive-bg-color  $inactive-bg-color  $inactive-text-color
+    urgent_workspace  $urgent-bg-color  $urgent-bg-color  $text-color 
+  } 
 # Hiding the bar by default, showing on Alt press
-#    mode hide
-#    hidden_state hide
-#    modifier Mod1 
+#  mode hide
+#  hidden_state hide
+#  modifier Mod1 
 }
 
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -i \
-             -color-window "$bg-color" \
-             -theme '/etc/nixos/desktop/i3/rofi.theme' \
-             -font "System San Francisco Display 18"
+       -color-window "$bg-color" \
+       -theme '/etc/nixos/desktop/rofi.theme' \
+       -font "System San Francisco Display 18"
 
 # bindsym $mod+shift+l exec i3lock
 bindsym $mod+Shift+l exec xset dpms force off && i3lock -d --color 000000
@@ -241,9 +243,6 @@ bindsym $mod+Shift+l exec xset dpms force off && i3lock -d --color 000000
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
-# Touchpad controls
-bindsym XF86TouchpadToggle exec $HOME/.config/i3/scripts/toggletouchpad.sh # toggle touchpad
 
 # Keyboard layout
 exec --no-startup-id "setxkbmap -layout us,ru"
@@ -284,22 +283,21 @@ for_window [class="^.*"] border pixel 1
 
 # Autorun
 
-exec --no-startup-id while true; do wget -q --spider http://google.com ; if [ $? -ne 0 ]; then sleep 1; else bash -c /home/rezgar/Crossover/Crossover; break; fi; done;
+exec --no-startup-id while true; do wget -q --spider http://google.com ; if [ $? -ne 0 ]; then sleep 1; else bash -c /home/rezgar/Crossover/Crossover; screencloud; break; fi; done;
 exec nm-applet
 
 #exec flameshot
-exec screencloud
+#exec screencloud # only launching when there is internet access, cause it can't handle delayed connections in this version, and requires restarting the app
 
 exec megasync 
 
-exec /home/rezgar/.config/chromium-crash-cleanup.sh
 exec --no-startup-id i3-msg 'workspace $wsBrowserPersonal; exec 4< <(i3-get-conid -c "Chromium"); exec chromium --user-data-dir=~/.config/chromium/personal; exec i3-persist lock $(cat <&4);'
 exec --no-startup-id i3-msg 'workspace $wsBrowserWork; exec 4< <(i3-get-conid -c "Chromium"); exec chromium --user-data-dir=~/.config/chromium/work; exec i3-persist lock $(cat <&4);'
 
 exec i3-msg 'workspace $wsTerminals; exec urxvtc'
 #exec i3-msg 'workspace $wsTerminals; exec urxvtc'
 #exec i3-msg 'workspace $wsTerminals; exec urxvtc'
-#exec i3-msg 'workspace $wsTerminals; append_layout /home/rezgar/.config/i3/layouts/terminals.json'
+#exec i3-msg 'workspace $wsTerminals; append_layout /etc/nixos/desktop/i3/layouts/terminals.json'
 
 #exec code # I rarely use it so no point launching it on start
 
