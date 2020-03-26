@@ -13,8 +13,10 @@
 
   services.xserver = {
     desktopManager = {
-      default = "none";
       xterm.enable = false;
+    };
+    displayManager = {
+      defaultSession = "none+i3";
     };
     windowManager.i3 = {
       enable = true;
@@ -22,7 +24,7 @@
       extraPackages = with pkgs; [
         i3status i3lock i3blocks rofi
 	urxvt_perls #rxvt_unicode
-      ]
+      ];
     };
   };
 }
