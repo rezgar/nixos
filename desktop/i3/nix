@@ -2,9 +2,6 @@
 {
   environment.systemPackages = with pkgs; [
   ];
-   
-  services.urxvtd.enable = true;
-  environment.variables.EDITOR = "urxvtc";
 
   programs.dconf.enable = true; # to avoid settings not being saved for some applications
   services.dbus.packages = [ 
@@ -23,8 +20,16 @@
       configFile = ./config;
       extraPackages = with pkgs; [
         i3status i3lock i3blocks rofi
-	urxvt_perls #rxvt_unicode
+        urxvt_perls #rxvt_unicode
       ];
     };
   };
+
+  # Terminal
+  
+  services.urxvtd.enable = true;
+  environment.variables.EDITOR = "urxvtc";
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeTextFile "Xresources" "./Xresources"}
+  '';
 }
