@@ -19,6 +19,6 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-        mattermos-desktop
+        mattermost-desktop
     ];
 }
