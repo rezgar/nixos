@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 let
-    username = "rezgar";
+    username = "user";
 in {
     imports = [
-        ./desktop/i3/nix
+        ./desktop/kde/nix
     ];
 
     time.timeZone = "Europe/Chisinau";
@@ -19,6 +19,6 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-        mattermost-desktop
+      # mattermost-desktop
     ];
 }
