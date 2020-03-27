@@ -133,3 +133,10 @@ cp /mnt/etc/nixos.bak/hardware-configuration.nix /mnt/etc/nixos/
 
 echo "Installing NixOS..."
 nixos-install
+
+echo "Mounting the newly installed NixOS to set the user password..."
+mount -o bind /dev /mnt/dev
+mount -o bind /proc /mnt/proc
+mount -o bind /sys /mnt/sys
+chroot /mnt /nix/var/nix/profiles/system/activate
+chroot /mnt /run/current-system/sw/bin/bash -c "passwd $USERNAME"
