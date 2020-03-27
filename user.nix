@@ -5,6 +5,7 @@ let
 in {
     imports = [
         ./desktop/i3/nix
+        ./shells/zsh/nix
     ];
 
     time.timeZone = "Europe/Chisinau";
