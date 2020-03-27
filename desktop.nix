@@ -16,7 +16,7 @@
     hermit
     source-code-pro
     dejavu_fonts
-    nerdfonts powerline-fonts
+    powerline-fonts
     font-awesome_4 font-awesome_5
   ];
 
