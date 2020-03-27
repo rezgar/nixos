@@ -234,7 +234,7 @@ bar {
 
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -i \
        -color-window "$bg-color" \
-       -theme '/etc/nixos/desktop/rofi.theme.rasi' \
+       -theme '/etc/nixos/desktop/i3/rofi.theme.rasi' \
        -font "System San Francisco Display 18"
 
 # bindsym $mod+shift+l exec i3lock
