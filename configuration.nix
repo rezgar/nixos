@@ -20,7 +20,7 @@
 
   # Select internationalisation properties.
   i18n = {
-    defaultLocale = "ru_RU.UTF-8";
+    defaultLocale = "en_US.UTF-8";
   };
 
   console = {
