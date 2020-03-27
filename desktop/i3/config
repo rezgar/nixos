@@ -308,6 +308,7 @@ exec --no-startup-id i3-msg 'workspace $wsChat; append_layout /etc/nixos/desktop
 
 #exec i3-msg 'workspace $wsMail; exec thunderbird'
 #exec i3-msg 'workspace $wsMail; exec mailspring'
+exec --no-startup-id i3-msg 'workspace $wsMail; exec chromium --app=https://mail.google.com'
 
 #exec i3-msg 'workspace $wsFiles; exec urxvtc -e vifm'
 #exec i3-msg 'workspace $wsFiles; exec urxvtc -e ranger'
