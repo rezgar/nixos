@@ -1,0 +1,10 @@
+{ config, lib, pkgs, ... }:
+{
+    programs.zsh.ohMyZsh = {
+        enable = true;
+        custom = ./config;
+        plugins = [ "git" "sudo" "docker" "kubectl" ];
+    };
+
+    users.defaultUserShell = pkgs.zsh;
+}
