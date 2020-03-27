@@ -34,7 +34,7 @@
 
     # Keyboard layouts
     layout = "us,ru(winkeys)";
-    xkbOptions = "grp:caps_toggle,grp_led:caps";
+    xkbOptions = "grp:toggle,grp_led:caps";
     xkbVariant = "winkeys";
     xkbModel = "microsoft";
 
