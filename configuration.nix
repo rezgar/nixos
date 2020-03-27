@@ -20,12 +20,12 @@
 
   # Select internationalisation properties.
   i18n = {
-     defaultLocale = "en_US.UTF-8";
+    defaultLocale = "ru_RU.UTF-8";
   };
 
   console = {
-     font = "Lat2-Terminus16";
-     keyMap = "us";
+     font = "cyr-sun16";
+     keyMap = "ruwin_cplk-UTF-8";
   };
 
   # List packages installed in system profile. To search, run:

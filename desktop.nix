@@ -23,20 +23,26 @@
   # Enable sound
   sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # Enable the X11 windowing system
-  services.xserver.enable = true;
-  services.xserver.autorun = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eugosign:e";
-
-  # Enable touchpad support
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.naturalScrolling = true;
-
-  # Display Manager
-  services.xserver.displayManager.sddm.enable = true;
-
+  
   # Enable CUPS to print document
   services.printing.enable = true;
+
+  # Enable the X11 windowing system
+  services.xserver = {
+    enable = true;
+    autorun = true;
+
+    # Keyboard layouts
+    layout = "us,ru(winkeys)";
+    xkbOptions = "grp:caps_toggle,grp_led:caps";
+    xkbVariant = "winkeys";
+    xkbModel = "microsoft";
+
+    # Enable touchpad support
+    libinput.enable = true;
+    libinput.naturalScrolling = true;
+
+    # Display Manager
+    displayManager.sddm.enable = true;
+  };
 }
