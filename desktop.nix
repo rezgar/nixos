@@ -9,7 +9,7 @@
 
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
-    chromium
+    chromium xfce.mousepad
   ];
 
   fonts.fonts = with pkgs; [
