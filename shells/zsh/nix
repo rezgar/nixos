@@ -2,7 +2,7 @@
 {
     programs.zsh.ohMyZsh = {
         enable = true;
-        custom = ./config;
+        custom = "/etc/nixos/shells/zsh/config";
         plugins = [ "git" "sudo" "docker" "kubectl" ];
     };
 
