@@ -4,6 +4,7 @@ let
     username = "rezgar";
 in {
     imports = [
+        ./work.nix
         ./desktop/i3/nix
 #        ./shells/zsh/nix # NOTE: Work in progress
     ];
