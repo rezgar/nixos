@@ -6,7 +6,6 @@ in {
     imports = [
         ./work.nix
         ./desktop/i3/nix
-#        ./shells/zsh/nix # NOTE: Work in progress
     ];
 
     time.timeZone = "Europe/Chisinau";
