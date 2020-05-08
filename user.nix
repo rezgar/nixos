@@ -4,7 +4,8 @@ let
     username = "rezgar";
 in {
     imports = [
-        ./work.nix
+#        ./work.nix          # WiP
+#        ./gaming.nix
         ./desktop/kde/nix
     ];
 

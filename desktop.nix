@@ -45,4 +45,7 @@
     # Display Manager
     displayManager.sddm.enable = true;
   };
+
+  # Keyring
+  security.pam.services.sddm.enableGnomeKeyring = true;
 }
