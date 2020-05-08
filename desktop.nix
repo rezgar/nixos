@@ -22,7 +22,7 @@
 
   # Enable sound
   sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = true;
   
   # Enable CUPS to print document
   services.printing.enable = true;
