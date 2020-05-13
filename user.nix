@@ -1,12 +1,10 @@
-{ config, pkgs, ... }:
-
+{ username, config, pkgs, ... }:
 let
-    username = "rezgar";
-in {
+    username = import ./username.nix;
+in
+{
     imports = [
-#        ./work.nix          # WiP
-#        ./gaming.nix
-        ./desktop/kde/nix
+      (./users + "/${username}.nix")
     ];
 
     time.timeZone = "Europe/Chisinau";
@@ -19,8 +17,4 @@ in {
               "docker"
             ];
     };
-
-    environment.systemPackages = with pkgs; [
-        mattermost-desktop
-    ];
 }
