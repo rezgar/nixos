@@ -4,7 +4,6 @@
   imports = [
     ./chat.nix
     ./email.nix
-    ./coding.nix
   ];
 
   environment.systemPackages = with pkgs; [
